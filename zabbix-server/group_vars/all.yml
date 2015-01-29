@@ -1,11 +1,17 @@
-http_port: 80
+zabbix_server_host: 180.4.4.10
+
+##Zabbix API Connection (optional)
+zabbix_server_url : "http://{{zabbix_server_host}}/zabbix"
+zabbix_server_front_user : "Admin" ## fresh installation default 'Admin' (dont change unless you changed the user)
+zabbix_server_front_pass : "zabbix" ## fresh installation default 'Zabbix' (dont change unless you changed the password)
+
+
 tmp_folder: /tmp/download
 
 deb_url: http://repo.zabbix.com/zabbix/2.4/ubuntu/pool/main/z/zabbix-release/zabbix-release_2.4-1+trusty_all.deb
 
-zabbix_mysql: zabbix-server-mysql
+zabbix_server: zabbix-server-mysql
 zabbix_front: zabbix-frontend-php
-apache: apache2
 
 zabbix_server_php_date_timezone : "Asia/Kolkata" ## check http://php.net/manual/en/timezones.php
 zabbix_server_php_max_input_time : 300
@@ -13,10 +19,7 @@ zabbix_server_php_upload_max_filesize : "2M"
 zabbix_server_php_post_max_size : "16M"
 zabbix_server_php_memory_limit : "128M"
 zabbix_server_php_max_execution_time : 300
-##Zabbix API Connection (optional)
-zabbix_server_url : "http://{{zabbix_server_host}}/zabbix"
-zabbix_server_front_user : "Admin" ## fresh installation default 'Admin' (dont change unless you changed the user)
-zabbix_server_front_pass : "zabbix" ## fresh installation default 'Zabbix' (dont change unless you changed the password)
+
 ## Zabbix Server options
 zabbix_server_install : True ## Install server True or False
 zabbix_server_install_type : 'server' ## Install zabbix 'server' or 'proxy'
