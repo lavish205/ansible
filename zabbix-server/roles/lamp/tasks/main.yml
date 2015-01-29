@@ -1,0 +1,5 @@
+---
+- name: Installing General Packages
+  apt: pkg={{ item }} state=installed
+  with_items: Lamp_packages
+  tags: lamp

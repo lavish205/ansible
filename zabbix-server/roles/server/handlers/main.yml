@@ -1,0 +1,8 @@
+- name: restart apache
+  service: name=apache2 state=restarted
+
+- name: restart zabbix
+  command: service zabbix-server start
+
+- name: reload apache
+  service: name=apache2 state=reloaded
