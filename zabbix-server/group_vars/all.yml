@@ -1,9 +1,14 @@
-zabbix_server_host: 180.4.4.10
+
 
 ##Zabbix API Connection (optional)
 zabbix_server_url : "http://{{zabbix_server_host}}/zabbix"
 zabbix_server_front_user : "Admin" ## fresh installation default 'Admin' (dont change unless you changed the user)
 zabbix_server_front_pass : "zabbix" ## fresh installation default 'Zabbix' (dont change unless you changed the password)
+
+#schema directory
+zabbix_schema: /usr/share/zabbix-server-mysql
+
+
 
 
 tmp_folder: /tmp/download
@@ -29,7 +34,7 @@ zabbix_server_db_install : False ## Install database True or False depands on ot
 zabbix_server_db_type : 'pgsql' ## pgsql or mysql
 zabbix_server_db_name : "zabbix"
 zabbix_server_db_user : "zabbix"
-zabbix_server_db_pass : "READRdXxc&2zgvgzs_blaaaaaa" ##TODO: Change to by random
+zabbix_server_db_pass : "password" ##TODO: Change to by random
 zabbix_server_db_host : "localhost" ##by default same server
 zabbix_server_db_port : 5432
 zabbix_server_db_intial_dir : "/usr/share/zabbix-server-{{zabbix_server_db_type}}"
