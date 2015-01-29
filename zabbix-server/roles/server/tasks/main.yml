@@ -1,4 +1,13 @@
 ---
+
+- name: Installing zabbix server and mysql
+  apt: name={{ zabbix_server }} state=installed
+  tags: server
+
+- name: Installing zabbix frontend and php
+  apt: name={{ zabbix_front }} state=installed
+  tags: server
+
 - name: Copy zabbix-configuration file
   template: src=../templates/zabbix_server.conf dest=/etc/zabbix/zabbix_server.conf
   tags: server
@@ -6,6 +15,9 @@
 
 - name: Copy php5-apache-configuration file
   template: src=../templates/php.ini dest=/etc/php5/apache2/php.ini
+  tags: server
+- name: Copy zabbix default file
+  template: src=../templates/zabbix-server dest=/etc/default/zabbix-server
   tags: server
 
 
@@ -33,13 +45,6 @@
   service: name=apache2 state=started
   tags: server
 
-- name: Installing zabbix server and mysql
-  apt: name={{ zabbix_server }} state=installed
-  tags: server
-
-- name: Installing zabbix frontend and php
-  apt: name={{ zabbix_front }} state=installed
-  tags: server
 
 - name: starting zabbix server
   apt: name={{ zabbix_server }} state=present

@@ -8,5 +8,12 @@ Lamp_packages:
         - php5-xmlrpc
         - php-soap
         - php5-gd
+        - python-dev
+        - python-mysqldb
         - sendmail
+        # - libselinux-python
+        # - libsemanage-python
         - unzip
+mysqlservice: mysqld
+mysql_port: 3306
+dbuser: root
