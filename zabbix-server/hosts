@@ -1,0 +1,5 @@
+[zabbix-server]
+server1 ansible_ssh_host=180.4.4.10 ansible_ssh_user=root
+
+[zabbix-agent]
+180.4.5.10

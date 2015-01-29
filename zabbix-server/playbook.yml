@@ -1,0 +1,53 @@
+---
+- hosts: zabbix-server
+  remote_user: root
+  tasks:
+    - name: Prepare install folder
+      file: state=directory path={{ tmp_folder }}
+
+    - name: Download zabbix server 
+      get_url: url={{ deb_url }} dest={{ tmp_folder }}
+
+    - name: Update system
+      apt: update_cache=yes
+
+    - name: Installing General Packages
+      apt: pkg={{ item }} state=installed
+      tags: common
+      with_items:
+        - php5
+        - apache2
+        - mysql-server
+        - mysql-client
+        - php5-mysql
+        - php-apc
+        - php5-xmlrpc
+        - php-soap
+        - php5-gd
+        - sendmail
+        - unzip
+    
+    - name: Copy zabbix apache configuration file
+      file: src=./templates/apache.conf dest=/etc/apache2/sites-available/apache.conf
+
+    - name: enabling zabbix frontend
+      shell: a2ensite apache.conf
+
+
+    - name: Restarting apache server
+      apt: pkg={{ apache }} state=latest
+      notify: restart apache
+
+    - name: Ensure apache is running
+      service: name={{ apache }} state=started
+
+    - name: Installing zabbix server and mysql
+      apt: name={{ zabbix_mysql }} state=installed
+
+    - name: Installing zabbix frontend and php
+      apt: name={{ zabbix_front }} state=installed
+
+
+  handlers:
+    - name: restart apache
+      service: name={{ apache }} state=restarted
