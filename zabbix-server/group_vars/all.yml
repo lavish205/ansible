@@ -7,17 +7,29 @@ zabbix_mysql: zabbix-server-mysql
 zabbix_front: zabbix-frontend-php
 apache: apache2
 
-
-
-php_value max_execution_time: '300'
-php_value memory_limit: '128M'
-php_value post_max_size: '16M'
-php_value upload_max_filesize: '2M'
-php_value max_input_time: '300'
-php_value date.timezone: 'Asia/Kolkata'
-
-
-
+zabbix_server_php_date_timezone : "Asia/Kolkata" ## check http://php.net/manual/en/timezones.php
+zabbix_server_php_max_input_time : 300
+zabbix_server_php_upload_max_filesize : "2M"
+zabbix_server_php_post_max_size : "16M"
+zabbix_server_php_memory_limit : "128M"
+zabbix_server_php_max_execution_time : 300
+##Zabbix API Connection (optional)
+zabbix_server_url : "http://{{zabbix_server_host}}/zabbix"
+zabbix_server_front_user : "Admin" ## fresh installation default 'Admin' (dont change unless you changed the user)
+zabbix_server_front_pass : "zabbix" ## fresh installation default 'Zabbix' (dont change unless you changed the password)
+## Zabbix Server options
+zabbix_server_install : True ## Install server True or False
+zabbix_server_install_type : 'server' ## Install zabbix 'server' or 'proxy'
+zabbix_server_port : 10051 ## Default 10051
+##Database options
+zabbix_server_db_install : False ## Install database True or False depands on other roles read the docs
+zabbix_server_db_type : 'pgsql' ## pgsql or mysql
+zabbix_server_db_name : "zabbix"
+zabbix_server_db_user : "zabbix"
+zabbix_server_db_pass : "READRdXxc&2zgvgzs_blaaaaaa" ##TODO: Change to by random
+zabbix_server_db_host : "localhost" ##by default same server
+zabbix_server_db_port : 5432
+zabbix_server_db_intial_dir : "/usr/share/zabbix-server-{{zabbix_server_db_type}}"
 
 # mysql
 mysql_root_password: 'password'

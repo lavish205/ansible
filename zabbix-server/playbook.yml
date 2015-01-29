@@ -28,10 +28,11 @@
         - unzip
     
     - name: Copy zabbix apache configuration file
-      file: src=./templates/apache.conf dest=/etc/apache2/sites-available/apache.conf
+      template: src=./templates/apache.conf dest=/etc/apache2/sites-available/apache.conf
 
     - name: enabling zabbix frontend
       shell: a2ensite apache.conf
+      notify: reload apache
 
 
     - name: Restarting apache server
@@ -47,7 +48,17 @@
     - name: Installing zabbix frontend and php
       apt: name={{ zabbix_front }} state=installed
 
+    - name: starting zabbix server
+      apt: name={{ zabbix_mysql }} state=present
+      notify: restart zabbix
+
 
   handlers:
     - name: restart apache
       service: name={{ apache }} state=restarted
+    
+    - name: restart zabbix
+      command: service zabbix-server start
+    
+    - name: reload apache
+      service: name=apache2 state=reloaded
