@@ -1,3 +1,2 @@
 [zabbix-server]
 180.4.4.10 ansible_ssh_user=root
-

@@ -28,7 +28,6 @@
 - name: Copy zabbix apache configuration file
   template: src=../templates/apache.conf dest=/etc/apache2/sites-available/apache.conf
   tags: server
-  tags: server
 
 - name: enabling zabbix frontend
   shell: a2ensite apache.conf

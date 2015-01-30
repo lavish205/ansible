@@ -5,10 +5,10 @@
 - mysql_db: name='{{ zabbix_server_db_name }}' state=present
   tags: mysql_zabbix
 
-# - mysql_db: name='{{ zabbix_server_db_name }}' state=import target='{{ zabbix_schema }}'/schema.sql.gz
-# - mysql_db: name='{{ zabbix_server_db_name }}' state=import target='{{ zabbix_schema }}'/images.sql.gz
-# - mysql_db: name='{{ zabbix_server_db_name }}' state=import target='{{ zabbix_schema }}'/data.sql.gz
-  # tags: mysql_zabbix
+- mysql_db: name='{{ zabbix_server_db_name }}' state=import target='{{ zabbix_schema }}'/schema.sql.gz
+- mysql_db: name='{{ zabbix_server_db_name }}' state=import target='{{ zabbix_schema }}'/images.sql.gz
+- mysql_db: name='{{ zabbix_server_db_name }}' state=import target='{{ zabbix_schema }}'/data.sql.gz
+  tags: mysql_zabbix
 
 #restart mysql
 - name: Restarting mysql

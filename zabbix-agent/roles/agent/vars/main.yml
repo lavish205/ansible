@@ -1,0 +1,5 @@
+
+# mysql
+mysql_root_password: 'password'
+
+zabbix_agent: zabbix-agent
