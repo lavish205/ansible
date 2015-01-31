@@ -1,2 +1,6 @@
 [zabbix-server]
-180.4.4.10 ansible_ssh_user=root
+180.4.4.10 ansible_ssh_user=vagrant
+
+
+[zabbix-agent]
+180.4.5.10 ansible_ssh_user=vagrant

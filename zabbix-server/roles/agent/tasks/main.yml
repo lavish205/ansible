@@ -3,12 +3,15 @@
 - name: Installing zabbix agent
   apt: name={{ zabbix_agent }} state=installed
   tags: agent
+  sudo: yes
 
 - name: Copy configuration file
   template: src=../templates/zabbix_agentd.conf dest=/etc/zabbix/zabbix_agentd.conf
   tags: agent
+  sudo: yes
 
 - name: starting zabbix agent
   apt: name={{ zabbix_agent }} state=present
   tags: agent
+  sudo: yes
   notify: restart zabbix

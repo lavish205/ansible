@@ -1,17 +1,27 @@
 ---
 - mysql_user: name=zabbix password=password priv=*.*:ALL,GRANT state=present
+  sudo: yes
   tags: mysql_zabbix
 
 - mysql_db: name='{{ zabbix_server_db_name }}' state=present
+  sudo: yes
   tags: mysql_zabbix
 
 - mysql_db: name='{{ zabbix_server_db_name }}' state=import target='{{ zabbix_schema }}'/schema.sql.gz
-- mysql_db: name='{{ zabbix_server_db_name }}' state=import target='{{ zabbix_schema }}'/images.sql.gz
-- mysql_db: name='{{ zabbix_server_db_name }}' state=import target='{{ zabbix_schema }}'/data.sql.gz
+  sudo: yes
   tags: mysql_zabbix
 
-#restart mysql
+- mysql_db: name='{{ zabbix_server_db_name }}' state=import target='{{ zabbix_schema }}'/images.sql.gz
+  sudo: yes
+  tags: mysql_zabbix
+
+- mysql_db: name='{{ zabbix_server_db_name }}' state=import target='{{ zabbix_schema }}'/data.sql.gz
+  sudo: yes
+  tags: mysql_zabbix
+
+
 - name: Restarting mysql
   apt: pkg=mysql-server state=latest
   tags: mysql_zabbix
+  sudo: yes
   notify: restart mysql

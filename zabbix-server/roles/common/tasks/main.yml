@@ -1,12 +1,15 @@
 ---
 - name: Prepare install folder
   file: state=directory path={{ tmp_folder }}
+  sudo: yes
   tags: common
 
 - name: Download zabbix server 
   get_url: url={{ deb_url }} dest={{ tmp_folder }}
+  sudo: yes
   tags: common
 
 - name: Update system
   apt: update_cache=yes
+  sudo: yes
   tags: common
