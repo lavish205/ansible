@@ -2,50 +2,63 @@
 
 - name: Installing zabbix server and mysql
   apt: name={{ zabbix_server }} state=installed
+  sudo: yes
   tags: server
 
 - name: Installing zabbix frontend and php
   apt: name={{ zabbix_front }} state=installed
+  sudo: yes
   tags: server
 
 - name: Copy zabbix-configuration file
   template: src=../templates/zabbix_server.conf dest=/etc/zabbix/zabbix_server.conf
+  sudo: yes
   tags: server
 
 
 - name: Copy php5-apache-configuration file
   template: src=../templates/php.ini dest=/etc/php5/apache2/php.ini
+  sudo: yes
   tags: server
+
+  
 - name: Copy zabbix default file
   template: src=../templates/zabbix-server dest=/etc/default/zabbix-server
+  sudo: yes
   tags: server
 
 
 - name: copy zabbix frontend php config file
   template: src=../templates/zabbix.conf.php dest=/etc/zabbix/zabbix.conf.php
+  sudo: yes
   tags: server
 
 - name: Copy zabbix apache configuration file
   template: src=../templates/apache.conf dest=/etc/apache2/sites-available/apache.conf
+  sudo: yes
   tags: server
 
 - name: enabling zabbix frontend
   shell: a2ensite apache.conf
   tags: server
+  sudo: yes
   notify: reload apache
 
 
 - name: Restarting apache server
   apt: pkg=apache2 state=latest
   tags: server
+  sudo: yes
   notify: restart apache
 
 - name: Ensure apache is running
   service: name=apache2 state=started
+  sudo: yes
   tags: server
 
 
 - name: starting zabbix server
   apt: name={{ zabbix_server }} state=present
+  sudo: yes
   tags: server
   notify: restart zabbix

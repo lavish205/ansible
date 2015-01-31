@@ -1,8 +1,14 @@
 ---
 - hosts: zabbix-server
-  remote_user: root
+  remote_user: vagrant
   roles:
   - common
   - lamp
   - server
   - mysql_zabbix
+
+- hosts: zabbix-agent
+  remote_user: vagrant
+  roles:
+  - common
+  - agent
