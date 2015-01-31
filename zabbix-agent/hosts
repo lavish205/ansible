@@ -1,2 +1,0 @@
-[zabbix-agent]
-180.4.5.10 ansible_ssh_user=root
