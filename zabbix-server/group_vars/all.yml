@@ -3,11 +3,9 @@ zabbix_server_front_pass : "zabbix" ## fresh installation default 'Zabbix' (dont
 # mysql
 mysql_root_password: 'password'
 
-zabbix_server: zabbix-server-mysql
-zabbix_front: zabbix-frontend-php
-tmp_folder: /tmp/download
+#constant value for zabbix-agent conf file
+zabbix_server: "180.4.4.10"
 
-deb_url: http://repo.zabbix.com/zabbix/2.4/ubuntu/pool/main/z/zabbix-release/zabbix-release_2.4-1+trusty_all.deb
 
 zabbix_server_php_date_timezone: "Asia/Kolkata" ## check http://php.net/manual/en/timezones.php
 zabbix_server_php_max_input_time: 300

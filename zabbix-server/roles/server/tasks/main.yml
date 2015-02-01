@@ -1,12 +1,12 @@
 ---
 
 - name: Installing zabbix server and mysql
-  apt: name={{ zabbix_server }} state=installed
+  apt: name={{ zabbix_server_apt }} state=installed
   sudo: yes
   tags: server
 
 - name: Installing zabbix frontend and php
-  apt: name={{ zabbix_front }} state=installed
+  apt: name={{ zabbix_front_apt }} state=installed
   sudo: yes
   tags: server
 

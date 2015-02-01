@@ -1,6 +1,0 @@
-
-# mysql
-mysql_root_password: 'password'
-
-zabbix_server: zabbix-server-mysql
-zabbix_front: zabbix-frontend-php
