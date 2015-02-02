@@ -1,0 +1,6 @@
+
+# mysql
+mysql_root_password: 'password'
+
+zabbix_server_apt: zabbix-server-mysql
+zabbix_front_apt: zabbix-frontend-php
