@@ -26,8 +26,8 @@
   sudo: yes
   notify: restart mysql
 
-  - name: Restarting apache
-    apt: pkg=apache2 state=latest
-    tags: mysql_zabbix
-    sudo: yes
-    notify: restart apache
+- name: Restarting apache
+  apt: pkg=apache2 state=latest
+  tags: mysql_zabbix
+  sudo: yes
+  notify: restart apache
