@@ -1,0 +1,13 @@
+master ansible_ssh_host=10.4.4.2 ansible_ssh_user=vagrant
+slave1 ansible_ssh_host=10.4.4.3 ansible_ssh_user=vagrant
+haproxy ansible_ssh_host=10.4.4.4 ansible_ssh_user=vagrant
+
+
+[RedisCluster_haproxy]
+haproxy
+
+[RedisCluster_master]
+master
+
+[RedisCluster_slave]
+slave1

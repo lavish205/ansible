@@ -1,0 +1,34 @@
+---
+ - name: update apt-get 
+   apt: update_cache=yes
+   sudo: yes
+   tags:
+    - prepare
+
+ - name: Common | Set timezone variables
+   copy: content='Asia/Kolkata'
+         dest=/etc/timezone
+         owner=root
+         group=root
+         mode=0644
+   sudo: yes
+   notify:
+     - update timezone
+   tags:
+     - prepare
+     
+ # - name: upgrade ubuntu server
+ #   apt: upgrade=yes
+ #   sudo: yes
+ #   notify: 
+ #     - reboot
+ #   tags:
+ #     - prepare
+
+ - name: Common| Install required system packages.
+   apt: pkg={{ item }} state=installed
+   with_items: system_packages
+   sudo: yes
+   tags:
+     - setup
+     - prepare

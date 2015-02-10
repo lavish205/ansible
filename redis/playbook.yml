@@ -1,0 +1,17 @@
+- hosts: all
+  roles:
+    - common
+
+- hosts: RedisCluster_master
+  roles:
+    - redis
+
+- hosts: RedisCluster_slave
+  roles:
+    - redis
+    - redis_slave
+
+
+- hosts: RedisCluster_haproxy
+  roles:
+    - haproxy

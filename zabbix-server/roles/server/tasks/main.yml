@@ -58,7 +58,7 @@
 
 
 - name: starting zabbix server
-  apt: name={{ zabbix_server }} state=present
+  apt: name={{ zabbix_server_apt }} state=present
   sudo: yes
   tags: server
   notify: restart zabbix

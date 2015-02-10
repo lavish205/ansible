@@ -1,0 +1,44 @@
+- name: add haproxy latest repo
+  apt_repository: repo="ppa:vbernat/haproxy-1.5" state=present update_cache=yes
+  sudo: yes
+  tags:
+    - setup
+    - haproxy
+    
+- name: install haproxy
+  apt: pkg=haproxy state=installed update-cache=yes
+  sudo: yes
+  tags:
+    - setup
+    - haproxy
+
+- name: haproxy enabled
+  copy: content='ENABLED=1'
+        dest=/etc/default/haproxy
+        owner=root
+        group=root
+        mode=0644
+  sudo: yes
+  notify:
+    - restart haproxy
+  tags:
+    - setup
+    - haproxy
+
+- name: Configure haproxy
+  template: src=haproxy.cfg.j2 dest=/etc/haproxy/haproxy.cfg
+  sudo: yes
+  ignore_errors: yes
+  notify: restart haproxy
+  tags:
+    - setup
+    - haproxy
+
+- name: rsyslog config 
+  copy: src=rsyslog.conf dest=/etc/rsyslog.conf owner=root group=root mode=0644
+  sudo: yes
+  notify:
+    - restart rsyslog
+  tags:
+    - setup
+    - haproxy

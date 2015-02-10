@@ -1,0 +1,23 @@
+---
+ - name: Install Redis Server
+   apt: pkg=redis-server state=installed
+   sudo: yes
+   tags:
+     - redis
+     - setup
+
+ - name: redis conf 
+   copy: src=redis.conf dest=/etc/redis/redis.conf owner=root group=root mode=0644
+   sudo: yes
+   notify:
+     - restart redis
+   tags:
+     - redis
+     - setup
+ # - name: allow memory overcommit
+ #   shell:  echo 1 > /proc/sys/vm/overcommit_memory
+ #   sudo: yes
+ #   notify: reboot
+ #   tags:
+ #     - setovercommit
+ #     - redis_master
