@@ -11,23 +11,23 @@
     - setup
     - mysql
 
-# - mysql_db: name='{{ zabbix_server_db_name }}' state=import target='{{ zabbix_schema }}'/schema.sql.gz
-#   sudo: yes
-#   tags: 
-#     - setup
-#     - mysql
+- mysql_db: name='{{ zabbix_server_db_name }}' state=import target='{{ zabbix_schema }}'/schema.sql.gz
+  sudo: yes
+  tags: 
+    - setup
+    - mysql
 
-# - mysql_db: name='{{ zabbix_server_db_name }}' state=import target='{{ zabbix_schema }}'/images.sql.gz
-#   sudo: yes
-#   tags: 
-#     - setup
-#     - mysql
+- mysql_db: name='{{ zabbix_server_db_name }}' state=import target='{{ zabbix_schema }}'/images.sql.gz
+  sudo: yes
+  tags: 
+    - setup
+    - mysql
 
-# - mysql_db: name='{{ zabbix_server_db_name }}' state=import target='{{ zabbix_schema }}'/data.sql.gz
-#   sudo: yes
-#   tags: 
-#     - setup
-#     - mysql
+- mysql_db: name='{{ zabbix_server_db_name }}' state=import target='{{ zabbix_schema }}'/data.sql.gz
+  sudo: yes
+  tags: 
+    - setup
+    - mysql
 
 
 - name: Restarting mysql
