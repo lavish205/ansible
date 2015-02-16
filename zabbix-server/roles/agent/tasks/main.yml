@@ -6,7 +6,7 @@
   sudo: yes
 
 - name: Copy configuration file
-  template: src=../templates/zabbix_agentd.conf dest=/etc/zabbix/zabbix_agentd.conf
+  template: src=zabbix_agentd.conf dest=/etc/zabbix/zabbix_agentd.conf
   tags: agent
   sudo: yes
 

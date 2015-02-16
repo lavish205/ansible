@@ -3,25 +3,42 @@
   apt: pkg={{ item }} state=installed
   with_items: Lamp_packages
   sudo: yes
-  tags: lamp
+  tags:
+    - setup
+    - lamp
 
 - name: Create Mysql configuration file
   template: src=my.cnf.j2 dest=/etc/my.cnf
   sudo: yes
   notify: restart mysql
+  tags:
+    - setup
+    - lamp
 
 - name: Install pip
   apt: pkg=python-pip state=installed
   sudo: yes
+  tags:
+    - setup
+    - lamp
 
 - name: Install mysql dev
   apt: pkg=libmysqlclient-dev state=installed
   sudo: yes
-  
+  tags:
+    - setup
+    - lamp
+
 - name: mysql Packages
   pip: name=MySQL-python
   sudo: yes
+  tags:
+    - setup
+    - lamp
 
 - name: Start Mysql Service
   service: name=mysql state=started enabled=yes
   sudo: yes
+  tags:
+    - setup
+    - lamp
