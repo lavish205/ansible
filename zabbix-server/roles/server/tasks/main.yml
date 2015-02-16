@@ -11,7 +11,7 @@
   tags: server
 
 - name: Copy zabbix-configuration file
-  template: src=../templates/zabbix_server.conf dest=/etc/zabbix/zabbix_server.conf
+  template: src=zabbix_server.conf dest=/etc/zabbix/zabbix_server.conf
   sudo: yes
   tags: server
 
@@ -23,18 +23,18 @@
 
   
 - name: Copy zabbix default file
-  template: src=../templates/zabbix-server dest=/etc/default/zabbix-server
+  template: src=zabbix-server dest=/etc/default/zabbix-server
   sudo: yes
   tags: server
 
 
 - name: copy zabbix frontend php config file
-  template: src=../templates/zabbix.conf.php dest=/etc/zabbix/zabbix.conf.php
+  template: src=zabbix.conf.php dest=/etc/zabbix/zabbix.conf.php
   sudo: yes
   tags: server
 
 - name: Copy zabbix apache configuration file
-  template: src=../templates/apache.conf dest=/etc/apache2/sites-available/apache.conf
+  template: src=apache.conf dest=/etc/apache2/sites-available/apache.conf
   sudo: yes
   tags: server
 
@@ -58,7 +58,6 @@
 
 
 - name: starting zabbix server
-  apt: name={{ zabbix_server_apt }} state=present
+  service: name=apache2 state=restarted
   sudo: yes
   tags: server
-  notify: restart zabbix
