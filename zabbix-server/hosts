@@ -1,6 +1,7 @@
 [zabbix-server]
-10.4.4.5 ansible_ssh_user=vagrant
+10.4.4.2 ansible_ssh_user=vagrant
 
 
 [zabbix-agent]
-10.4.4.2 ansible_ssh_user=vagrant
+10.4.4.3 ansible_ssh_user=vagrant
+10.4.4.4 ansible_ssh_user=vagrant

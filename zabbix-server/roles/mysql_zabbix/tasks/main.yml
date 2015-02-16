@@ -1,33 +1,46 @@
 ---
 - mysql_user: name=zabbix password=password priv=*.*:ALL,GRANT state=present
   sudo: yes
-  tags: mysql_zabbix
+  tags: 
+    - setup
+    - mysql
 
 - mysql_db: name='{{ zabbix_server_db_name }}' state=present
   sudo: yes
-  tags: mysql_zabbix
+  tags: 
+    - setup
+    - mysql
 
-- mysql_db: name='{{ zabbix_server_db_name }}' state=import target='{{ zabbix_schema }}'/schema.sql.gz
-  sudo: yes
-  tags: mysql_zabbix
+# - mysql_db: name='{{ zabbix_server_db_name }}' state=import target='{{ zabbix_schema }}'/schema.sql.gz
+#   sudo: yes
+#   tags: 
+#     - setup
+#     - mysql
 
-- mysql_db: name='{{ zabbix_server_db_name }}' state=import target='{{ zabbix_schema }}'/images.sql.gz
-  sudo: yes
-  tags: mysql_zabbix
+# - mysql_db: name='{{ zabbix_server_db_name }}' state=import target='{{ zabbix_schema }}'/images.sql.gz
+#   sudo: yes
+#   tags: 
+#     - setup
+#     - mysql
 
-- mysql_db: name='{{ zabbix_server_db_name }}' state=import target='{{ zabbix_schema }}'/data.sql.gz
-  sudo: yes
-  tags: mysql_zabbix
+# - mysql_db: name='{{ zabbix_server_db_name }}' state=import target='{{ zabbix_schema }}'/data.sql.gz
+#   sudo: yes
+#   tags: 
+#     - setup
+#     - mysql
 
 
 - name: Restarting mysql
-  apt: pkg=mysql-server state=latest
-  tags: mysql_zabbix
+  service: name=mysql state=restarted
   sudo: yes
-  notify: restart mysql
+  tags:
+    - setup
+    - mysql
 
-- name: Restarting apache
-  apt: pkg=apache2 state=latest
-  tags: mysql_zabbix
+
+- name: Restarting zabbix
+  service: name=zabbix-server state=restarted
   sudo: yes
-  notify: restart apache
+  tags:
+    - setup
+    - mysql
