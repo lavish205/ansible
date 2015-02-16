@@ -4,8 +4,10 @@ zabbix_server_front_pass : "zabbix" ## fresh installation default 'Zabbix' (dont
 mysql_root_password: 'password'
 
 #constant value for zabbix-agent conf file
-zabbix_server: "10.4.4.5"
-
+zabbix_server: "10.4.4.2"
+zabbix_agent:
+    - 10.4.4.3
+    - 10.4.4.4
 
 zabbix_server_php_date_timezone: "Asia/Kolkata" ## check http://php.net/manual/en/timezones.php
 zabbix_server_php_max_input_time: 300

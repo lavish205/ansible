@@ -23,7 +23,7 @@
 
   
 - name: Copy zabbix default file
-  template: src=zabbix-server dest=/etc/default/zabbix-server
+  template: src=zabbix-server.conf dest=/etc/default/zabbix-server
   sudo: yes
   tags: server
 
