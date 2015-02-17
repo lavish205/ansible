@@ -15,3 +15,8 @@
   tags: agent
   sudo: yes
   notify: restart zabbix
+
+- name: restart zabbix
+  service: name=zabbix-agent state=restarted
+  sudo: yes
+  tags:agent
