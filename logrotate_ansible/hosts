@@ -1,0 +1,2 @@
+[servers]
+128.199.144.147 ansible_ssh_user=root

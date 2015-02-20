@@ -1,0 +1,17 @@
+- name: update apt-get
+  apt: update_cache=yes
+  sudo: yes
+  tags:
+    - prepare
+
+- name: Install logrotate package
+  apt: name=logrotate state=installed
+  sudo: yes
+  tags:
+   - prepare
+
+- name: copy configuration file
+  template: src=logrotate.conf.j2 dest=/etc/logrotate.conf
+  sudo: yes
+  tags:
+    - setup
