@@ -15,3 +15,9 @@
   sudo: yes
   tags:
     - setup
+
+- name: Restart logrotate service
+  shell: logrotate -fv /etc/logrotate.conf 
+  sudo: yes
+  tags:
+    - setup
