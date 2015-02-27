@@ -40,7 +40,6 @@ include /etc/logrotate.d
 	monthly
 	rotate 5
 	notifempty
-	create 0660 root root
 	compress
 	delaycompress
 	size {{ max_log_file_size }}
